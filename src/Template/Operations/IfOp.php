@@ -19,6 +19,7 @@
             $memoryManager->progress();
 
             $value = $this->getValue($memoryManager, $processor);
+            $memoryManager->progress();
 
             $memoryManager->progress();
             $block = $this->consumeBlock("if", $memoryManager);            
