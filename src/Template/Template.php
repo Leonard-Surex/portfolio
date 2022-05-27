@@ -1,6 +1,7 @@
 <?php
     namespace Template;
 
+    use Template\ITemplate;
     use Template\FileManager\FileManager;
     use Template\FileManager\IFileManager;
     use Template\MemoryManager\MemoryManager;
@@ -10,7 +11,7 @@
     use Template\Processor\Processor;
     use Template\Processor\IProcessor;
 
-    class Template
+    class Template implements ITemplate
     {
         public array $config;
 
@@ -45,7 +46,7 @@
                 return $this->$call($params[0], $params[1], $this->config);
             } else if (count($params) === 1) {
                 $variables = [];
-                return $this->call($params[0], $variables, $this->config);
+                return $this->$call($params[0], $variables, $this->config);
             }             
 
             return null;
@@ -181,9 +182,9 @@
             } else {
                 $fileManager = $allConfig['file_manager'];
             }
-
-            $templateData = $fileManager->read($template);
             
+            $templateData = $fileManager->read($template);
+
             return $this->_irender($templateData, $params, $allConfig);
         }
 

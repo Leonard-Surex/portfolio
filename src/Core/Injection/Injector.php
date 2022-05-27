@@ -41,7 +41,7 @@
                 return $class->newInstanceArgs($paramObjects->array());
            } else {
 
-               return $class->newInstanceArgs([]);
+            return $class->newInstanceArgs([]);
            }
         }
 
@@ -81,21 +81,21 @@
         }
     
         /**
-         * GetByType
+         * GetByValue
          *
          * Returns a parameter to be called with a concrete constructor
          * @param string $key           Which parameter
          * @param string $target        The interface the parameter is being requested for
          */
         private static function GetByValue(string $key, string $target): mixed {            
-            foreach (self::$bindings as $index => $binding) {
-                if (strcmp($binding->target, $target) == 0) {
-                    if (isset($binding->values[$key])) {
-                        return $binding->values[$key];
-                    }                    
-                }
-            }
+            $result = null;
 
-            return null;
+            self::$bindings->forEach(function($binding, $index) use ($key, $target, &$result) {
+                if ($binding->target == $target) {
+                    $result = $binding->values->get($key);
+                }
+            });
+
+            return $result;
         }
     }

@@ -1,6 +1,8 @@
 <?php
     namespace App\Controllers;
 
+    use Template\ITemplate;
+
     /**
      * HomeController
      *
@@ -8,9 +10,15 @@
      */
     class HomeController extends BaseController 
     {
+        private ITemplate $template;
+
+        public function __construct(ITemplate $template) {
+            $this->template = $template;
+        }
+
         public function index($param)
         {  
-            echo "hello!!!<br/>";     
+            echo $this->template->renderFrom("home.html");    
         }
 
         public function pathNotFound()

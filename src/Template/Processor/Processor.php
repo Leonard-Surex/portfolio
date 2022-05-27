@@ -5,6 +5,7 @@
     use Template\MemoryManager\IMemoryManager;
     use Template\Operations\ForEachOp;
     use Template\Operations\IfOp;
+    use Template\Operations\IncludeOp;
     use Template\Operations\Block;
     use Template\Operations\Show;
     use Template\Operations\Value;
@@ -29,7 +30,8 @@
                     ->addOperation(new Block())
                     ->addOperation(new Show())
                     ->addOperation(new IfOp())
-                    ->addOperation(new ForEachOp());
+                    ->addOperation(new ForEachOp())
+                    ->addOperation(new IncludeOp());
         }
 
         public function next(): mixed
@@ -69,18 +71,18 @@
             return $result;
         }
 
+        public function getFileManager(): IFileManager
+        {
+            return $this->fileManager;
+        }
+
         public function getConfig(): array
         {
             return $this->config;
         }
 
-        function getMemoryManager() : IMemoryManager
+        public function getMemoryManager() : IMemoryManager
         {
             return $this->memoryManager;
-        }
-
-        function getFileManager() : IFileManager
-        {
-            return $this->fileManager;
         }
     }

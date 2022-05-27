@@ -40,7 +40,7 @@
          * Class constructor
          */
         public function __construct() {
-            $values = new Dictionary();
+            $this->values = new Dictionary();
         }
 
         /**

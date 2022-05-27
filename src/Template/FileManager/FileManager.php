@@ -14,7 +14,7 @@
 
         public function read(string $filename): ?string
         {
-            $full = realpath(getcwd() . "\\" . $this->templatePath . "\\" . $filename);
+            $full = realpath($this->templatePath . "\\" . $filename);
             
             if (file_exists($full)) {
                 $data = file_get_contents($full);                                

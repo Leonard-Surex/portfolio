@@ -1,16 +1,7 @@
 <?php
     namespace Template;
 
-    use Template\FileManager\FileManager;
-    use Template\FileManager\IFileManager;
-    use Template\MemoryManager\MemoryManager;
-    use Template\MemoryManager\IMemoryManager;
-    use Template\Parser\LineParser;
-    use Template\Parser\TokenParser;
-    use Template\Processor\Processor;
-    use Template\Processor\IProcessor;
-
-    interface Template
+    interface ITemplate
     {     
         public function __call(string $method, array $params): mixed;
      
