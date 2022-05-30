@@ -18,7 +18,7 @@
 
         public function index($param)
         {  
-            echo $this->template->renderFrom("home.html");    
+            echo $this->template->renderFrom("home.html", ['name'=>'Tony', 'info' => ['stuff'=>'yay!']]);    
         }
 
         public function pathNotFound()

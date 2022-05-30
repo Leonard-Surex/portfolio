@@ -4,5 +4,5 @@
 
     // Home Controller
     Router::add("", "Home", "index", RequestMethod::All);
-
+    
     Router::add404("Home", "pathNotFound");

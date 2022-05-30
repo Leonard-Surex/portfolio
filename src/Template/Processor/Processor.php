@@ -23,7 +23,7 @@
         {
             $this->memoryManager = $memoryManager;
             $this->fileManager = $fileManager;
-            $this->config = $config;
+            $this->config = $config;            
 
             $memoryManager
                     ->addOperation(new Value())
