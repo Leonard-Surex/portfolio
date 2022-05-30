@@ -8,7 +8,7 @@
     {
         function next(): mixed;
 
-        function run(): ?string;
+        function run(): mixed;
 
         function getConfig(): array;
 

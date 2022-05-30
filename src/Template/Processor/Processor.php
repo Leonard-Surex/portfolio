@@ -54,17 +54,22 @@
             return null;
         }
 
-        public function run(): ?string
+        public function run(): mixed        
         {
             $result = "";
-
             do
             {
                 $singleResult = $this->next();
                 if ($singleResult === null) {
                     $this->memoryManager->progress();
                 } else {
-                    $result .= $singleResult;
+                    if (!is_array($result)) {
+                        if (is_array($singleResult)) {
+                        } else {
+                            $result .= $singleResult;
+                        }                        
+                    } else {
+                    }
                 }
             } while (!$this->memoryManager->done());
 

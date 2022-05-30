@@ -1,11 +1,8 @@
 <?php
     namespace Core\Collections;
 
-    use Core\Extensible;
-
-    abstract class Iterate {
-        use Extensible;
-
+    abstract class Iterate
+    {
         public function count(): int
         {
             throw new \Exception('Count not implemented in Iterate.');          

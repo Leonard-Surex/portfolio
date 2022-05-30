@@ -34,7 +34,6 @@
             $includedTemplate = $fileManager->read($templateName);
 
             if ($includedTemplate != null) {
-
                 $lines = LineParser::parse($includedTemplate);
 
                 $code = $code = [];
@@ -43,10 +42,11 @@
                     $code = array_merge($code, TokenParser::parse($line));
                 }
 
-                $childMemoryManager = new MemoryManager($code, $params);
+                $childMemoryManager = new MemoryManager($code, $params);            
                 $childProcessor = new Processor($childMemoryManager, $fileManager, $processor->getConfig());
                 
-                $data =  $childProcessor->run();            
+                $data =  $childProcessor->run();                        
+
                 return $data;
             }
         }

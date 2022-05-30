@@ -11,7 +11,7 @@
     {
         public abstract function process(IMemoryManager $memoryManager, IProcessor $processor): mixed;
 
-        protected function getValue(IMemoryManager $memoryManager, IProcessor $processor, bool $singleToken = false): mixed
+        protected function getValue(IMemoryManager $memoryManager, IProcessor $processor, bool $singleToken = false, $debug=false): mixed
         {
             $type = null;        
             $ip = $memoryManager->getIp();
@@ -43,15 +43,14 @@
                 // String Literal
                 $type = "string";
                 $value = substr($token, 1, strlen($token) - 2);
-            }
-            else if (substr($token, 0, 1) === '(' && substr($token, -1) === ')') {
-                // Brackets
+            } else if (substr($token, 0, 1) === '(' && substr($token, -1) === ')') {
+                // Brackets    
                 $value = substr($token, 1, strlen($token) - 2);
                 $tokens = TokenParser::parse($value);
                 $variables = [];
                 $childMemoryManager = new MemoryManager($tokens, $variables, $memoryManager);
                 $childProcessor = new Processor($childMemoryManager, $processor->getFileManager(), $processor->getConfig());
-                $value = $childProcessor->run(); 
+                $value = $childProcessor->run();
                 $type = $this->getType($value);
             } else if (is_numeric($token)) {                
                 // Numeric constant
@@ -67,7 +66,7 @@
                 $memoryManager->setIp($ip);
                 return null;
             }
-
+            
             return $value;
         }
 

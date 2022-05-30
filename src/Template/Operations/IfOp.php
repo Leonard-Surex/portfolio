@@ -17,21 +17,20 @@
             }                                   
 
             $memoryManager->progress();
-
-            $value = $this->getValue($memoryManager, $processor);
+            $value = $this->getValue($memoryManager, $processor, false, true);
             $memoryManager->progress();
 
-            $memoryManager->progress();
+            // $memoryManager->progress();
             $block = $this->consumeBlock("if", $memoryManager);            
             if ($block === null) {
                 return null;
-            }                                        
+            }                                                    
 
             if ($value == true) {
                 $variables = [];
                 $childMemoryManager = new MemoryManager($block, $variables, $memoryManager);
                 $childProcessor = new Processor($childMemoryManager, $processor->getFileManager(), $processor->getConfig());            
-                return $childProcessor->run();    
+                return $childProcessor->run();
             }
 
             return "";

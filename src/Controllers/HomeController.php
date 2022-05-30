@@ -18,7 +18,7 @@
 
         public function index($param)
         {  
-            echo $this->template->renderFrom("home.html", ['name'=>'Tony', 'info' => ['stuff'=>'yay!']]);    
+            echo $this->template->renderFrom("home.html", $this->headerModel());    
         }
 
         public function pathNotFound()
